@@ -1,0 +1,356 @@
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    :root{
+    --conatainer:rgb(253, 251, 251);
+    --theme: rgba(39, 98, 209, 0.945);
+    --theme_tran: rgba(19, 112, 233, 0.616);
+    --highLight: rgb(0, 38, 95);
+    --tag_trans: rgba(235, 232, 232, 0.39);
+    --hover: rgba(255, 255, 255, 0.945);
+    --shadow:rgba(218, 218, 218, 0.795);
+    }
+    ::selection{
+        background-color: #fff;
+        color: #000;
+    }
+    @font-face{
+        font-family: Logo;
+        src: url("font/CormorantGaramond-Regular.ttf");
+    }
+    /* .hr hr{
+        border: none;
+        background-color: var(--tag_trans);
+        height: 2px;
+        width:70%;
+        margin: 10px auto;
+    } */
+    a{
+        color: #000;
+        text-decoration: none;
+    }
+    body{
+        background: linear-gradient(-30deg, rgba(37, 147, 236, 0.863), rgba(4, 51, 112, 0.904) ,
+                                    rgba(37, 147, 236, 0.863));
+        font-family: overpass, 'sans-serif';
+    }
+    .container{
+        background-color:rgba(253, 251, 251, 0.151);
+        margin: 15px auto;
+        padding: 35px 18px;
+        width: calc(100% - 50px);
+        min-width: 570px;
+        height: auto;
+        border-radius: 5px;
+        position: relative;
+    }
+    .mid > h2, .btm > h2{
+        color: #fff;
+        border-bottom: 2px solid var(--theme);
+        margin: 10px auto;
+    }
+    .btm div{
+        width: 90%;
+        color: #fff;
+    }
+    .head .nav > h2{
+        font-family: logo;  /* custom font */
+        color: #fff;
+        font-size: 35px;
+    }
+
+    .head > div.nav{
+        max-width: 95%;
+        display: flex;
+        justify-content: space-between;
+    }
+    /* menubar styling */
+    .items ul li{
+        list-style-type: none;
+    }
+    .items ul.menu{
+        display: flex;
+    }
+    .items ul.menu > li{
+        margin: 5px 10px;
+    }
+    .items ul li a{
+        display: block; /*this property will solve total width error*/
+        width: 100%;
+        padding:5px 15px ;
+        margin: 3px 0;
+        border-radius: 5px;
+        background-color: var(--tag_trans);
+        color: #fff;
+    }
+    .items ul.sub_menu{
+        position: absolute;
+        margin-top: 7px;
+        padding: 3px;
+        border-radius: 5px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all ease-in 0.2s;
+    }
+    /* hovering menu and sub menu */
+    .items ul li > a:hover{
+        color: #000;
+        background-color: var(--hover);
+    }
+    .items ul > li:hover ul.sub_menu{
+        display: block ;
+        opacity: 1;
+        visibility: visible;
+        margin-top: 0;
+        z-index: 1;
+    }
+    /*search bar*/
+    .head .srch{
+        position: relative;
+        margin: 65px auto 0;
+        width: 70%;
+        max-width: 600px;
+        height:60px;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.411);
+        border-radius: 5px;
+    }
+    .srch > input[type=text]{
+        
+        /* background-color: var(--tag_trans); */
+        background-color: rgba(235, 235, 235, 0.459);
+        padding-left: 15px;
+        width:80%;
+        height: 100%;
+        outline: none;
+        border: none;
+        font-size: 25px;
+    }
+    .srch > input[type=text]::placeholder{
+        color: #000;
+    }
+    .head .srch i{
+        /* float: right; */
+        position: absolute;
+        right: 0;
+        font-size: 30px;
+        width: 20%;
+        height: 100%;
+        padding: 15px 40px;
+        color: #000;
+        background-color: var(--theme);
+        cursor: pointer ;
+    }
+    span.title{
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    .mid{
+        height: auto;
+        width: auto;   
+    }
+    .mid div{
+        margin: auto;
+        padding: 2px;
+        border-radius: 10px;
+    }
+    .mid .places p{
+        color: #fff;
+    }
+    .mid .main_place p{
+        color: #fff;
+        margin: 5px 0;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .mid p > a.home_tag{
+        color: var(--highLight);
+        position: relative;
+        margin-top: 10px;
+    }
+    .mid p > a{ 
+        color: #fff;
+        font-weight: 500;
+        padding: 3px 5px;
+        margin: 3px 5px;
+        border-radius: 5px;
+        background-color: var(--tag_trans);
+        position: relative;
+        top: -5px;
+        transition:all 0.5s;
+    }
+    .mid p > a:hover{
+        color: #000;
+        font-weight: 500;
+        background-color: var(--hover);
+    }
+    .mid  div > h2{
+        font-family: logo ;
+        display: inline-block;
+        line-height: 25px;
+        padding: 15px ;
+        margin: 10px 0px;
+        text-transform: uppercase;
+        background-color: #fff;
+        border-radius: 3px;
+        position: relative;
+        left: 10%;
+        cursor: pointer;
+    }
+    .mid div > h2:after{
+        content: '';
+        width: 60px;
+        height: 19px;
+        background-color: var(--theme_tran);
+        position: absolute;
+        bottom: 5px;
+        right: -20px;
+        transition:all ease-in 0.5s;
+    }
+    /* for rotating transition of h2 element of articles */
+    /*.mid div > h2:before{
+        top: 10%;
+        left: -10%;
+        transform: rotate(-45deg);
+     } */
+    .mid div > h2:hover:after   {
+        background-color: rgba(67, 122, 224, 0.849);
+        /* bottom: 0;
+        transform:rotate(0deg); */
+        width: 70%;
+        height: 20%;
+    }
+
+    /* fof highlighting the targeted article(div and h2) */
+    .mid div:target h2:before, .mid div:target h2:after {
+        background-color: var(--theme_tran);
+        width: 70%;
+        height: 20%;
+    }
+    /* for Ahmedabad article to keep display block */
+        /* .mid  div:nth-child(2){
+            display: block !important;
+    } */
+/* --------------------------------------------------------- */
+    /* inside main sect. div having place class whose direct first child is div having place_grid class
+    .mid div.places > div.place_grid{
+        display: none;
+    } */
+
+/* -------------------------------------------------------- */
+
+    /* animating div highlighting */
+    .mid div.places > div.place_grid:target{
+        display: block;
+        animation: h_light 2s;
+    }
+
+    /* sizing the elements */
+    
+    .head, .mid, .btm{
+        margin: auto;
+        width: 93%;
+    }
+    .mid div.main_place, .mid div.places{
+        margin: auto;
+        width: auto;
+    }
+    .mid div.main_place > div, .mid div.places > div{
+        width: 90%;
+    }
+    article{
+        color: #fff;
+        margin: 10px auto;
+        width: auto;
+        text-align: justify;
+        border-radius: 15px;
+    }
+    article::first-letter{
+        color: var(--highLight);
+        font-size: 35px;
+    }
+    /* brief history info.. expansion */
+    .keep_read{
+        color: var(--highLight);
+        position: relative;
+        left: 5%;
+    }
+    .extra_read{
+        display: none;
+    }
+    .extra_read:target{
+        display: block;
+    }
+
+    /* .mid div.places{
+        background-color: black;
+    } */
+
+    .abtUs p > a{
+        color: var(--highLight);
+    }
+    /* Animations */
+    @keyframes h_light {
+        0% {background-color: rgba(255, 255, 255, 0.589);}
+        100% {background-color: transparent;}
+    }
+
+
+    /* For Responsive site */
+    @media screen and (min-width:930px){
+
+        .mid div.places{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .mid div.places div.place_grid{ 
+            word-spacing: 2px;
+            margin: 10px;
+            padding: 5px;
+            background-color: rgba(255, 255, 255, 0.226);
+            width: 450px;
+            min-width: 350px;
+        }
+        .extra_read:target div.places{
+            width: 100%;
+            flex-direction: row;
+        }
+    }
+
+    @media screen and (max-width: 680px) {
+        
+    .head > div.nav{
+        display: block;
+        width: 50%;
+        margin: auto;
+    }
+    .head .nav > h2{
+        font-size: 50px;
+    }
+    .mid div > h2:before{
+        content: '';
+        width: 60px;
+        height: 19px;
+        background-color: var(--theme_tran);
+        position: absolute;
+        top: 5px;
+        left: -20px;
+        transition:all ease-in 0.5s;
+    }
+    .mid div > h2:hover:before{
+        width: 70%;
+        height: 20%;
+        background-color: var(--theme_tran);
+    }
+    .items > ul.menu{
+        display: block;
+    }
+    .items ul.sub_menu{
+        position: relative;
+        display: none;
+        transition: all 0.5s;
+    }
+  }
