@@ -6,68 +6,105 @@
     }
     :root{
     --conatainer:rgb(253, 251, 251);
-    --theme: rgba(39, 98, 209, 0.945);
-    --theme_tran: rgba(19, 112, 233, 0.616);
-    --highLight: rgb(0, 38, 95);
-    --tag_trans: rgba(235, 232, 232, 0.39);
-    --hover: rgba(255, 255, 255, 0.945);
+    /* --theme: rgb(78, 144, 231); */
+
+    --theme: rgb(10, 154, 190);
+    --theme_hover: rgba(168, 232, 248, 0.514);
+
+    --tag_grey: rgba(235, 232, 232, 0.774);
+    --font_tag_grey: rgb(51, 51, 51);
+    --hover: rgba(150, 150, 150, 0.555);
     --shadow:rgba(218, 218, 218, 0.795);
     }
     ::selection{
-        background-color: #fff;
-        color: #000;
+        color: #fff;
+        text-shadow: 2px 2px #000;
+        background-color: rgba(0, 139, 182, 0.966);
     }
+
+    /* custom font from google font */
     @font-face{
         font-family: Logo;
-        src: url("font/CormorantGaramond-Regular.ttf");
+        src: url("font/CormorantGaramond-Medium.ttf");
     }
-    /* .hr hr{
+    /* 1 REM = 16px */
+    body{
+        font-family: 'Overpass', sans-serif;
+    }
+    .hr hr{
         border: none;
-        background-color: var(--tag_trans);
+        background-color: var(--tag_grey);
         height: 2px;
         width:70%;
         margin: 10px auto;
-    } */
+    }
     a{
         color: #000;
         text-decoration: none;
     }
-    body{
-        background: linear-gradient(-30deg, rgba(37, 147, 236, 0.863), rgba(4, 51, 112, 0.904) ,
-                                    rgba(37, 147, 236, 0.863));
-        font-family: overpass, 'sans-serif';
-    }
+    /* container...... */
     .container{
-        background-color:rgba(253, 251, 251, 0.151);
-        margin: 15px auto;
-        padding: 35px 18px;
-        width: calc(100% - 50px);
-        min-width: 570px;
-        height: auto;
+        background: var(--conatainer);
+        margin: auto;
+        padding: auto ;
+        width: 100%;
+        min-width: 500px;
+        height: 100%;
         border-radius: 5px;
         position: relative;
     }
-    .mid > h2, .btm > h2{
-        color: #fff;
+    /* sizing main elements */
+    .head, .mid, .btm{
+        width: 100%;
+        height: auto;
+    }
+    .mid, .btm{
+        margin: 60px auto 10px;
+    }
+    .mid > .wrap_cont, .btm > .wrap_cont{
+        margin: auto;
+        width: 95%;
+    }
+    /* wrapped content */
+    .wrap_cont{
+        margin: auto;
+    }
+    /*styling have a look at and about us */
+    .wrap_cont > h2{
+        color: var(--theme);
+        padding-left: 10px;
+        padding-top: 10px;
+        margin: 20px auto;
+        text-transform: uppercase;
         border-bottom: 2px solid var(--theme);
-        margin: 10px auto;
     }
-    .btm div{
-        width: 90%;
-        color: #fff;
+ /* head portion...... */
+    .head{
+        background-image: linear-gradient(#fff 10%, transparent 80%),url(images/Rani-Ki-Vav.jpg);
+        width: 100%;
+        height: 500px;  /* width and height is necessary for parent bcoz img is 100%*/
+        background-size: 100% 100%;
     }
-    .head .nav > h2{
-        font-family: logo;  /* custom font */
-        color: #fff;
+    .head .logo{
+        cursor: pointer;
+    }
+    .head .logo > h2{
         font-size: 35px;
+        letter-spacing: 2px;
+        font-family: logo;
+    } 
+    .head .logo span.site_tagline{
+        text-transform: capitalize;
     }
-
+    /* align items in row...inside head */
     .head > div.nav{
+        margin-top: 20px;
         max-width: 95%;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
     }
-    /* menubar styling */
+    
+    /* menubar styling........ */
     .items ul li{
         list-style-type: none;
     }
@@ -78,279 +115,249 @@
         margin: 5px 10px;
     }
     .items ul li a{
-        display: block; /*this property will solve total width error*/
+        display: block; /*this property will solve total width error of anchor ele. in li ele.*/
+        text-transform: uppercase;
         width: 100%;
         padding:5px 15px ;
         margin: 3px 0;
         border-radius: 5px;
-        background-color: var(--tag_trans);
-        color: #fff;
+        background-color: var(--tag_grey); 
     }
     .items ul.sub_menu{
         position: absolute;
         margin-top: 7px;
         padding: 3px;
         border-radius: 5px;
+        background-color: rgb(235, 232, 232);
         opacity: 0;
         visibility: hidden;
-        transition: all ease-in 0.2s;
+        transition: all ease-in 0.1s;
     }
-    /* hovering menu and sub menu */
-    .items ul li > a:hover{
-        color: #000;
-        background-color: var(--hover);
+    /* hovering menu and sub menu ......*/
+    .items ul li > a:hover, .items ul li > a:focus{
+        outline: none;
+        background-color:var(--hover) ;
     }
-    .items ul > li:hover ul.sub_menu{
+    .items ul > li:hover ul.sub_menu, .items ul > li:focus ul.sub_menu{
         display: block ;
         opacity: 1;
         visibility: visible;
         margin-top: 0;
         z-index: 1;
     }
-    /*search bar*/
+    /*search bar....*/
     .head .srch{
-        position: relative;
-        margin: 65px auto 0;
+        height:60px;
         width: 70%;
         max-width: 600px;
-        height:60px;
-        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.411);
+        position: relative;
+        margin: 65px auto 0;
         border-radius: 5px;
     }
     .srch > input[type=text]{
-        
-        /* background-color: var(--tag_trans); */
-        background-color: rgba(235, 235, 235, 0.459);
-        padding-left: 15px;
-        width:80%;
+        width: 100%;
         height: 100%;
-        outline: none;
+        padding-left: 15px;
+        font-size:25px;
         border: none;
-        font-size: 25px;
+        border-radius: 5px;
+        outline: none;
     }
     .srch > input[type=text]::placeholder{
-        color: #000;
+        color: var(--theme);
     }
+    .srch > input[type=text]:hover, .srch > input[type=text]:focus{
+        border: 3px dashed var(--theme);
+        caret-color: var(--theme);
+    }
+    /* search icon , @fontAwesome */
     .head .srch i{
-        /* float: right; */
+        font-size:25px ;
         position: absolute;
-        right: 0;
-        font-size: 30px;
-        width: 20%;
-        height: 100%;
-        padding: 15px 40px;
-        color: #000;
-        background-color: var(--theme);
+        top: 50%;
+        right: 3%;
+        transform: translate(-50%,-50%);
         cursor: pointer ;
     }
-    span.title{
-        font-weight: 600;
-        text-transform: uppercase;
+    .head .srch i:active{
+        color: var(--theme);
     }
-    .mid{
-        height: auto;
-        width: auto;   
-    }
-    .mid div{
-        margin: auto;
-        padding: 2px;
-        border-radius: 10px;
-    }
-    .mid .places p{
-        color: #fff;
-    }
-    .mid .main_place p{
-        color: #fff;
-        margin: 5px 0;
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .mid p > a.home_tag{
-        color: var(--highLight);
-        position: relative;
-        margin-top: 10px;
-    }
-    .mid p > a{ 
-        color: #fff;
-        font-weight: 500;
-        padding: 3px 5px;
-        margin: 3px 5px;
+/* middle portion of site... */
+
+    .main_place{
+        background-color: var(--tag_grey);
         border-radius: 5px;
-        background-color: var(--tag_trans);
-        position: relative;
-        top: -5px;
-        transition:all 0.5s;
+        padding: 10px;
+        text-align: justify;
     }
-    .mid p > a:hover{
-        color: #000;
-        font-weight: 500;
-        background-color: var(--hover);
-    }
-    .mid  div > h2{
-        font-family: logo ;
-        display: inline-block;
-        line-height: 25px;
-        padding: 15px ;
-        margin: 10px 0px;
+    .main_place h2, .other_places h2{
+        padding: 10px;
+        border-radius: 5px;
         text-transform: uppercase;
-        background-color: #fff;
-        border-radius: 3px;
-        position: relative;
-        left: 10%;
+        font-family: logo;
         cursor: pointer;
     }
-    .mid div > h2:after{
-        content: '';
-        width: 60px;
-        height: 19px;
-        background-color: var(--theme_tran);
-        position: absolute;
-        bottom: 5px;
-        right: -20px;
-        transition:all ease-in 0.5s;
-    }
-    /* for rotating transition of h2 element of articles */
-    /*.mid div > h2:before{
-        top: 10%;
-        left: -10%;
-        transform: rotate(-45deg);
-     } */
-    .mid div > h2:hover:after   {
-        background-color: rgba(67, 122, 224, 0.849);
-        /* bottom: 0;
-        transform:rotate(0deg); */
-        width: 70%;
-        height: 20%;
-    }
-
-    /* fof highlighting the targeted article(div and h2) */
-    .mid div:target h2:before, .mid div:target h2:after {
-        background-color: var(--theme_tran);
-        width: 70%;
-        height: 20%;
-    }
-    /* for Ahmedabad article to keep display block */
-        /* .mid  div:nth-child(2){
-            display: block !important;
-    } */
-/* --------------------------------------------------------- */
-    /* inside main sect. div having place class whose direct first child is div having place_grid class
-    .mid div.places > div.place_grid{
-        display: none;
-    } */
-
-/* -------------------------------------------------------- */
-
-    /* animating div highlighting */
-    .mid div.places > div.place_grid:target{
-        display: block;
-        animation: h_light 2s;
-    }
-
-    /* sizing the elements */
-    
-    .head, .mid, .btm{
-        margin: auto;
-        width: 93%;
-    }
-    .mid div.main_place, .mid div.places{
-        margin: auto;
-        width: auto;
-    }
-    .mid div.main_place > div, .mid div.places > div{
-        width: 90%;
-    }
-    article{
+    .other_places h2{
         color: #fff;
-        margin: 10px auto;
+        background: linear-gradient(to right, var(--theme), 
+                                            rgba(255, 255, 255, 0.185) 80%  );
+    }
+    .other_places h2 > a{
+        color: #fff;
+    }
+    .p_tags{
+        margin: 10px;
+    }
+    .p_tags_btm{
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    .p_tags span.title{
+        color: var(--theme);
+        text-transform: capitalize;
+        padding: 5px;
+        border-radius: 3px;
+        text-transform: uppercase;
+    }
+    .p_tags a{
+        color: #000;
+        background-color: var(--theme_hover);
+        padding: 5px;
+        border-radius: 3px;
+        margin: auto 5px;
+        outline: none;
+    }
+    .p_tags_btm a{
+        color: var(--font_tag_grey);
+        font-weight: 600;
+    }
+    .p_tags a:hover, .p_tags a:focus{
+        background-color: var(--hover);
+    }
+    /* article grid view */
+    .other_places{
         width: auto;
+        padding: 25px 0 ;
+        border-radius: 5px;
+        display: flex;  
+        /* flex-wrap: wrap;
+        justify-content: center; */
+        overflow-x: scroll;
+        /* background-color: var(--tag_grey); */
+    }
+    
+    .other_places .place_grid{
+        margin: 15px;
+        height: 400px;
+        width: 40%;
+        min-width: 450px;
+        padding: 10px;
+        border-radius: 10px;
         text-align: justify;
-        border-radius: 15px;
+        /* background-color: var(--conatainer); */
+        transition: all 0.3s;
     }
+    .other_places .place_grid:hover{
+        transform: scale(1.02);
+        box-shadow: 0px 10px 20px 5px var(--shadow);
+
+    }
+    .other_places .place_grid:target{
+        transform: scale(1.1);
+        box-shadow: 5px 10px 15px 5px var(--shadow);
+    }
+
+    /* image in place_grid view */
+    #kl{
+        background-image: url(images/kankaria.jpg);
+        background-size: 100% 100%;
+    }
+    #jm{
+        background-image: url(images/jamaMosque.jpg);    
+        background-size: 100% 100%;
+    }
+    #st{
+        background-image: url(images/kankaria.jpg);
+        background-size: 100% 100%;
+    }
+    #rkv{
+        background-image: url(images/Rani-Ki-Vav.jpg);
+        background-size: 100% 100%;
+    }
+    /* setting up hover effect for gtrid view */
+    .other_places div.p_tags,
+    .other_places div.p_tags + article{
+        display: none   ;
+    }
+    .place_grid:hover div.p_tags,
+    .place_grid:hover div.p_tags + article{
+        display: block;
+    }
+    #jm:hover, #kl:hover, #st:hover, #rkv:hover{
+        background-image: linear-gradient( white, var(--theme_hover));
+    }
+
     article::first-letter{
-        color: var(--highLight);
+        color: var(--theme);
         font-size: 35px;
+        font-family: logo;
     }
-    /* brief history info.. expansion */
-    .keep_read{
-        color: var(--highLight);
-        position: relative;
-        left: 5%;
-    }
-    .extra_read{
+    /* hidden places */
+    .hid_place > .place_info{
         display: none;
+        background-color: aquamarine;
+        width: 100vw;
+        height: 50vh;
     }
-    .extra_read:target{
+    .place_info:target{
         display: block;
     }
 
-    /* .mid div.places{
-        background-color: black;
-    } */
-
-    .abtUs p > a{
-        color: var(--highLight);
+/* bottom portion */
+    .btm{
+        background-color: var(--tag_grey);
+        height: 10rem;
     }
-    /* Animations */
+    .abtUs p > a{
+        color: var(--theme);
+    }
+    /* Animations .....*/
     @keyframes h_light {
-        0% {background-color: rgba(255, 255, 255, 0.589);}
+        0% {background-color: rgba(14, 102, 255, 0.199);}
         100% {background-color: transparent;}
     }
 
 
-    /* For Responsive site */
-    @media screen and (min-width:930px){
-
-        .mid div.places{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .mid div.places div.place_grid{ 
-            word-spacing: 2px;
-            margin: 10px;
-            padding: 5px;
-            background-color: rgba(255, 255, 255, 0.226);
-            width: 450px;
-            min-width: 350px;
-        }
-        .extra_read:target div.places{
-            width: 100%;
-            flex-direction: row;
-        }
-    }
-
+    /* For Responsive site .....*/
     @media screen and (max-width: 680px) {
+
+        .head > div.nav{
+            display: block;
+            margin: auto;
+            width: 50%;
+        }
+        .head .logo > h2{
+            font-size: 50px;
+        }
+        .items ul.menu{
+            display: block;
+        }
+        .items > ul.menu a, .items ul.sub_menu{
+            background-color: #fff;
+        }
         
-    .head > div.nav{
-        display: block;
-        width: 50%;
-        margin: auto;
-    }
-    .head .nav > h2{
-        font-size: 50px;
-    }
-    .mid div > h2:before{
-        content: '';
-        width: 60px;
-        height: 19px;
-        background-color: var(--theme_tran);
-        position: absolute;
-        top: 5px;
-        left: -20px;
-        transition:all ease-in 0.5s;
-    }
-    .mid div > h2:hover:before{
-        width: 70%;
-        height: 20%;
-        background-color: var(--theme_tran);
-    }
-    .items > ul.menu{
-        display: block;
-    }
-    .items ul.sub_menu{
-        position: relative;
-        display: none;
-        transition: all 0.5s;
-    }
+        /* .other_places{
+            overflow-x: hidden;
+            flex-wrap: wrap;
+            justify-content: center; 
+            flex-direction: column;
+            align-items: center;
+        } */
+
+        .other_places .place_grid{
+            height: 300px;
+            min-width: 350px;
+            overflow: hidden;
+        }
   }
