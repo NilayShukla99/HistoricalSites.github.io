@@ -6,21 +6,27 @@
     }
     :root{
     --conatainer:rgb(253, 251, 251);
-    /* --theme: rgb(78, 144, 231); */
 
-    --theme: rgb(10, 154, 190);
+    --theme: rgb(0, 184, 230);
+    --theme_light: rgba(204, 238, 247, 0.651);
     --theme_hover: rgba(168, 232, 248, 0.514);
 
+    --error: #fc4545;
+    --white-grey: rgb(249, 249, 249);
     --tag_grey: rgba(235, 232, 232, 0.774);
-    --font_tag_grey: rgb(51, 51, 51);
-    --hover: rgba(150, 150, 150, 0.555);
-    --shadow:rgba(218, 218, 218, 0.795);
+    --hover: rgba(191, 191, 191, 0.555);
+    --shadow:rgba(189, 187, 187, 0.795);
+
+    --yellow: #ffff7e5e;
     }
     ::selection{
         color: #fff;
         text-shadow: 2px 2px #000;
         background-color: rgba(0, 139, 182, 0.966);
     }
+    
+    .abtUs > p  span.tooltip{ display: none;}
+   
 
     /* custom font from google font */
     @font-face{
@@ -28,8 +34,10 @@
         src: url("font/CormorantGaramond-Medium.ttf");
     }
     /* 1 REM = 16px */
-    body{
+    
+    html{
         font-family: 'Overpass', sans-serif;
+        scroll-behavior: smooth;
     }
     .hr hr{
         border: none;
@@ -41,6 +49,18 @@
     a{
         color: #000;
         text-decoration: none;
+    }
+    .btn{
+        height: 30px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .btn:active{ 
+        zoom: 95%;
+    }
+    .gradient{
+        background: linear-gradient(to right, var(--theme), var(--yellow));
     }
     /* container...... */
     .container{
@@ -59,12 +79,21 @@
         height: auto;
     }
     .mid, .btm{
-        margin: 60px auto 10px;
+        margin: 40px auto 10px;
+        padding-top: 10px;
     }
-    .mid > .wrap_cont, .btm > .wrap_cont{
+    .btm > .wrap_cont{
         margin: auto;
-        width: 95%;
+        width: 96%;
     }
+    .mid{
+        display: flex;
+    }
+    .mid > .wrap_cont{
+        margin: 10px auto;
+        width: 68%;
+    }
+
     /* wrapped content */
     .wrap_cont{
         margin: auto;
@@ -72,21 +101,23 @@
     /*styling have a look at and about us */
     .wrap_cont > h2{
         color: var(--theme);
+        line-height: 40px;
         padding-left: 10px;
-        padding-top: 10px;
         margin: 20px auto;
         text-transform: uppercase;
-        border-bottom: 2px solid var(--theme);
+        border-left: 5px solid var(--theme);
     }
  /* head portion...... */
     .head{
         background-image: linear-gradient(#fff 10%, transparent 80%),url(images/Rani-Ki-Vav.jpg);
         width: 100%;
         height: 500px;  /* width and height is necessary for parent bcoz img is 100%*/
-        background-size: 100% 100%;
+        background-size: cover;
     }
     .head .logo{
         cursor: pointer;
+        position: relative;
+        right: 25px;
     }
     .head .logo > h2{
         font-size: 35px;
@@ -97,13 +128,149 @@
         text-transform: capitalize;
     }
     /* align items in row...inside head */
-    .head > div.nav{
-        margin-top: 20px;
-        max-width: 95%;
+    .head > nav{
+        width: 100%;
+        height: 50px;
+        padding-top: 15px;
         display: flex;
+        align-items: center;
         justify-content: space-around;
+        position: fixed;
+        top: 0;
+        left: 0;
+        transition:all 0.3s;
+        z-index: 2;
     }
-    
+    .sticky{
+        background-color: rgb(252, 252, 252);
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+    }
+    /* user login or sign up */
+    .user_login{
+        background-color: var(--white-grey);
+        border-radius: 5px;
+        padding: 5px 5px 10px;
+        width: 300px;
+        position: absolute; 
+        top: 10px;
+        right: 10px;
+        z-index: 2;
+        transition: all 0.5s;
+    }
+    .user_login {
+        display: flex;
+        flex-direction: column;
+        clip-path: circle(25px at 240px 25px);
+    }
+    .user_login .user_name{
+        font-size: 22px;
+        text-transform: uppercase;
+        position: absolute;
+        top: 10px;
+        right: -120px;
+        transition: all 0.5s;
+    }
+    .user_login .fa-user{
+        margin-right: 15px;
+        font-size: 30px;
+    }
+    .user_login:hover .user_name{
+        right: 20%;
+    }
+    .user_login:hover .fa-user{
+        display: none;
+    }
+    .user_login:hover, .user_login:focus{
+        clip-path: circle(500px at 10px 10px);
+    }
+    .user_login .signUp_form{
+        display: flex;
+        flex-direction: column;
+        margin-top: 50px;
+    }
+    .signUp_form .form_field{
+        height: 35px;
+        width: 90%;
+        margin: 3px auto;
+        padding: 5px;
+        outline: none;
+        border: 2px solid rgb(168, 232, 248);
+        border-radius: 5px;
+    }
+    .signUp_form .form_field:last-child{
+        margin-bottom: 50px;
+    }
+    .or_sign_in{
+        padding: 5px;
+        text-align: center;
+    }
+    .user_login .btn{
+        width: 90%;
+        margin: auto;
+    }
+    .error_msg{
+        color: var(--error);
+        font-size: 13px;
+    }
+    .modal{
+        width: 100%;
+        height: 0;
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        z-index: 2;
+        transition: all 0.3s;
+    }
+    .backdrop{
+        background-color: #000000b0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+    .modal .content{
+        position: relative;
+        zoom: 50%;
+        background-color: #fff;
+        text-align: center;
+        padding: 15px;
+        border-radius: 5px;
+        transition: all 0.4s ease-out;
+    }
+    .modal .fa-times{
+        font-size: 25px;
+        color: var(--theme);
+        position: relative;
+        top: 55px;
+        right: 30px;
+    }
+    .content input{
+        height: 35px;
+        width: 250px;
+        padding: 5px;
+        margin-bottom: 3px;
+        border-radius: 5px;
+        border: 2px solid rgb(168, 232, 248);
+    }
+    .content img{
+        vertical-align: middle;
+        width: 35px;
+        height: 35px;
+        margin: 3px 10px;
+    }
+    .active_modal{
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        height: 100%;
+    }
+    .active_modal .content{
+        zoom: 100%;
+    }
+
     /* menubar styling........ */
     .items ul li{
         list-style-type: none;
@@ -117,25 +284,35 @@
     .items ul li a{
         display: block; /*this property will solve total width error of anchor ele. in li ele.*/
         text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 600;
         width: 100%;
-        padding:5px 15px ;
+        padding: 5px 15px;
         margin: 3px 0;
         border-radius: 5px;
-        background-color: var(--tag_grey); 
     }
+    
     .items ul.sub_menu{
         position: absolute;
         margin-top: 7px;
         padding: 3px;
         border-radius: 5px;
-        background-color: rgb(235, 232, 232);
+        background-color: var(--white-grey);
         opacity: 0;
         visibility: hidden;
         transition: all ease-in 0.1s;
     }
+    .sub_sub_menu{
+        opacity: 0;
+        display: none;
+        position: relative;
+        right: 100px;
+        right: 0;
+    }
+
     /* hovering menu and sub menu ......*/
+    
     .items ul li > a:hover, .items ul li > a:focus{
-        outline: none;
         background-color:var(--hover) ;
     }
     .items ul > li:hover ul.sub_menu, .items ul > li:focus ul.sub_menu{
@@ -149,10 +326,12 @@
     .head .srch{
         height:60px;
         width: 70%;
-        max-width: 600px;
+        max-width: 500px;
+        margin: auto;
         position: relative;
-        margin: 65px auto 0;
+        top: 200px;
         border-radius: 5px;
+        box-shadow: 0px 4px 2px -2px grey;
     }
     .srch > input[type=text]{
         width: 100%;
@@ -184,8 +363,36 @@
     }
 /* middle portion of site... */
 
+    .side_bar{
+        background-color: #ffff7e50;
+        height: 90%; /*required*/
+        /* min-height: 500px;  */
+        width: 28%;
+        margin-right: auto;
+        padding: 10px;
+        border-radius: 5px;   
+        position: sticky; /*required*/
+        top: 150px; /*required*/
+    }
+    .quick_facts{
+        margin: auto;
+        font-weight: 600;
+        text-align: center;
+        border-bottom: 2px dashed #000;
+        width: fit-content;
+    }
+    .sou_img{
+        margin: 10px;
+        border-radius: 5px;
+        background-image: url(images/sou.jpg);
+        max-width: 350px;
+        width: 100%;
+        height: 150px;
+        background-size: 100% 100%;
+    }
     .main_place{
-        background-color: var(--tag_grey);
+        background-color: var(--theme_light);
+        position: relative;
         border-radius: 5px;
         padding: 10px;
         text-align: justify;
@@ -200,67 +407,76 @@
     .other_places h2{
         color: #fff;
         background: linear-gradient(to right, var(--theme), 
-                                            rgba(255, 255, 255, 0.185) 80%  );
+                                rgba(255, 255, 255, 0.185) 80%  );
     }
     .other_places h2 > a{
         color: #fff;
     }
-    .p_tags{
-        margin: 10px;
-    }
-    .p_tags_btm{
+
+    /* tags styling tags */
+    .tags{
         display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
+        align-items: center;
+        margin: 10px;
+        width: fit-content;
+        user-select: none;
     }
-    .p_tags span.title{
-        color: var(--theme);
-        text-transform: capitalize;
+    .tags label, .tags span{
+        font-weight: 600;
         padding: 5px;
-        border-radius: 3px;
-        text-transform: uppercase;
+        border-radius: 5px;
     }
-    .p_tags a{
+    .tags input[type=checkbox]{
+        display: none;
+    }
+    .tags label{
+        cursor: pointer;
+        transition: all 0.5s;
+    }
+    .tags label:active{ 
+        zoom: 95%;
+    }
+    .tags a{
         color: #000;
-        background-color: var(--theme_hover);
+        background-color: var(--hover);
         padding: 5px;
         border-radius: 3px;
-        margin: auto 5px;
         outline: none;
     }
-    .p_tags_btm a{
-        color: var(--font_tag_grey);
-        font-weight: 600;
+    .tags_btm a{
+        color: #fff;
+        background-color: var(--theme);
     }
-    .p_tags a:hover, .p_tags a:focus{
-        background-color: var(--hover);
+    .tags a:hover{
+        color: #000;
+        background-color: var(--tag_grey);
     }
+
     /* article grid view */
     .other_places{
         width: auto;
         padding: 25px 0 ;
         border-radius: 5px;
         display: flex;  
-        /* flex-wrap: wrap;
-        justify-content: center; */
-        overflow-x: scroll;
-        /* background-color: var(--tag_grey); */
+        flex-wrap: wrap;
+        justify-content: center;
     }
-    
     .other_places .place_grid{
         margin: 15px;
-        height: 400px;
-        width: 40%;
-        min-width: 450px;
+        height: 300px;
+        width: 37%;
+        min-width: 280px;
         padding: 10px;
         border-radius: 10px;
         text-align: justify;
+        overflow: hidden;
         /* background-color: var(--conatainer); */
+        box-shadow: 1px 1px 5px grey;
         transition: all 0.3s;
     }
     .other_places .place_grid:hover{
-        transform: scale(1.02);
-        box-shadow: 0px 10px 20px 5px var(--shadow);
+        transform: scale(1.05);
+        box-shadow: 0px 2px 20px 3px var(--shadow);
 
     }
     .other_places .place_grid:target{
@@ -269,50 +485,91 @@
     }
 
     /* image in place_grid view */
-    #kl{
-        background-image: url(images/kankaria.jpg);
+    #rj{
+        background-image: url(images/gandhi_museum.jpg);
         background-size: 100% 100%;
     }
-    #jm{
-        background-image: url(images/jamaMosque.jpg);    
+    #pt{
+        background-image: url(images/Surat-Clock-Tower.jpeg);    
         background-size: 100% 100%;
     }
-    #st{
-        background-image: url(images/kankaria.jpg);
-        background-size: 100% 100%;
+    #str{
+        background-image: url(images/Maharaja-Fatehsingh-Museum-768x499.jpg);
+        background-size: 100% 100%; 
     }
-    #rkv{
+    #vdr{
         background-image: url(images/Rani-Ki-Vav.jpg);
         background-size: 100% 100%;
     }
     /* setting up hover effect for gtrid view */
-    .other_places div.p_tags,
-    .other_places div.p_tags + article{
+    .other_places div.tags,
+    .other_places div.tags + article{
         display: none   ;
     }
-    .place_grid:hover div.p_tags,
-    .place_grid:hover div.p_tags + article{
+    .place_grid:hover div.tags,
+    .place_grid:hover div.tags + article{
         display: block;
     }
-    #jm:hover, #kl:hover, #st:hover, #rkv:hover{
+    #rj:hover, #pt:hover, #str:hover, #vdr:hover{
         background-image: linear-gradient( white, var(--theme_hover));
     }
 
     article::first-letter{
         color: var(--theme);
-        font-size: 35px;
+        font-size: 50px;
         font-family: logo;
+        float: left; /*required*/
+        margin:0 10px 0 0;
+        line-height:40px;
+        display: block;
     }
     /* hidden places */
+    .hid_place{
+        margin: 5px auto 5px;
+    }
     .hid_place > .place_info{
         display: none;
         background-color: aquamarine;
-        width: 100vw;
-        height: 50vh;
+        width: 100%;
+        height: 70vh;
+        padding: 10px;
+        border-radius: 5px;
     }
     .place_info:target{
         display: block;
     }
+    .toTop{
+        color: var(--theme);
+        position: fixed;
+        bottom: 30px;
+        right: 50px;
+        font-size: 50px;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s;
+    }
+    /* hidden section images */
+    .place_info div{
+        text-align: center;
+    }
+    .place_info img{
+        margin: 10px 10px;
+        width: 150px;
+        height: 150px;
+        border-radius: 5px;
+    }
+
+    /* to top arrow */
+    .active{
+        opacity: 1;
+        cursor: pointer;
+        pointer-events: auto;
+    }
+    /* temporary */
+    .active a{
+        color: var(--theme);
+    }
+    
 
 /* bottom portion */
     .btm{
@@ -330,34 +587,71 @@
 
 
     /* For Responsive site .....*/
-    @media screen and (max-width: 680px) {
-
-        .head > div.nav{
-            display: block;
-            margin: auto;
-            width: 50%;
+    @media screen and (max-width: 700px) { 
+        .logo{
+            left: 10px;
         }
         .head .logo > h2{
-            font-size: 50px;
+            font-size: 30px;
+        } 
+        span.site_tagline{
+            display: none;
         }
-        .items ul.menu{
-            display: block;
+        .head > nav{
+            padding-top: 10px;
         }
-        .items > ul.menu a, .items ul.sub_menu{
-            background-color: #fff;
+        .items ul.menu > li {
+            margin: 5px 5px;
         }
-        
-        /* .other_places{
-            overflow-x: hidden;
-            flex-wrap: wrap;
-            justify-content: center; 
+        .items ul li a{
+            font-size: 13px;
+            padding: 5px 5px ;
+        }
+        .user_login{
+            background-color: var(--white-grey);
+            clip-path: circle(20px at 220px 25px);
+            right: 10px;
+            width: 250px;
+        }
+        .user_login .user_name{
+            font-size: 20px;
+            right: -133px;
+        }
+        .head .srch{
+            height:50px;
+            width: 70%;
+        }
+    }
+    @media screen and (max-width: 900px) { }
+    @media screen and (max-width: 600px) { 
+        .mid{
+            display: flex;
             flex-direction: column;
-            align-items: center;
-        } */
-
-        .other_places .place_grid{
-            height: 300px;
-            min-width: 350px;
-            overflow: hidden;
         }
-  }
+        .side_bar{
+            margin: auto;
+            width: 80%;
+        }
+        .tags{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+        #explr_ct{
+            width: auto;
+        }
+        .tags label{
+            text-align: center;
+            width: 100%;
+            transition: all 0.5s;
+        }
+        .head > nav{
+            padding-bottom: 10px;
+            height: 70px;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+    }
+
+        
