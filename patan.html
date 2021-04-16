@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Sites | Patan</title>
+    <!--External style sheet-->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cities_style.css">
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Overpass&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
+    <!--Fonts Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .head{
+            background-image:  linear-gradient(transparent, #00000064),url(images/Bhimsen_Temple_E28093_Patan_-_01_20190723151509.jpg);
+             height: 400px; /* width and height is necessary for parent bcoz img is 100%*/
+            background-size: 100% 100%;
+            position: relative;
+        }
+        .img1{background-image: linear-gradient(to bottom, #ffffff3b 60%, #000 ), url(images/gandhi_museum.jpg);}
+        .img2{background-image: linear-gradient(to bottom, #ffffff3b 60%, #000 ), url(images/Watson-Museum.jpg);}
+        .img3{background-image: linear-gradient(to bottom, #ffffff3b 60%, #000 ), url(images/palatial-wonderland-1-ranjit-vilas-palace-1200.jpg);}
+        .img4{background-image: linear-gradient(to bottom, #ffffff3b 60%, #000 ), url(images/aji-dam.jpeg);}
+        .img5{background-image: linear-gradient(to bottom, #ffffff3b 60%, #000 ), url(images/lal-pari-lake-1.jpeg);}
+
+        .img1:hover {
+            background-image: linear-gradient(to bottom, #ffffff3b 60%, #000 ), url(images/gandhi_museum.jpg);
+            transform: scale(1.1);
+            zoom: 105%;
+        }
+        .img2:hover {
+            background-image: linear-gradient(to bottom, #ffffff3b 60%, #000 ), url(images/Watson-Museum.jpg);
+            transform: scale(1.1);
+            zoom: 105%;
+        }
+        .img3:hover {
+            background-image: linear-gradient(to bottom, #ffffff3b 60%, #000 ), url(images/palatial-wonderland-1-ranjit-vilas-palace-1200.jpg);
+            transform: scale(1.1);
+            zoom: 105%;
+        }
+        .img4:hover {
+            background-image: linear-gradient(to bottom, #ffffff3b 60%, #000 ), url(images/aji-dam.jpeg);
+            transform: scale(1.1);
+            zoom: 105%;
+        }
+        .img5:hover {
+            background-image: linear-gradient(to bottom, #ffffff3b 60%, #000 ), url(images/lal-pari-lake-1.jpeg);
+            transform: scale(1.1);
+            zoom: 105%;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container" id="home">
+
+    <!-- Top portion of site-->
+    <section class="head" >
+        <nav>
+            <div class="logo" onclick="n()">
+                <h2 class="logo site_name ">HistoricalSites</h2>
+                <span class="logo site_tagline">Brief Information About Historical Places</span>
+            </div>
+            <div class="items">
+                <ul class="menu">
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="#other_places">Places</a>
+                        <ul class="sub_menu">
+                            <li><a href="index.html#gj">Ahemedabad</a></li>
+                            <li><a href="rajkot.html">Rajkot</a>
+                            </li>
+                            <li><a href="surat.html" target="_blank">Surat</a></li>
+                            <li><a href="vadodara.html" target="_blank">Vadodara</a></li>
+                            <li><a href="patan.html" target="_blank">Patan</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#abtUs">About Us</a></li>
+                </ul>
+            </div>
+            <div class="user_login" id="user_login">       
+                <span class="user_name">
+                    <i class="fa fa-user"></i>
+                    User Details
+                </span>
+                <div class="signUp_form" id="signUp_form">
+                    <input type="text" class="form_field"  id="f_name" placeholder="first Name" onblur="validation()"><span class="error_msg" ></span>
+    
+                    <input type="text" class="form_field"  id="l_name" placeholder="last Name"><span class="error_msg"></span>
+    
+                    <input type="tel" class="form_field"  id="mo_num" placeholder="Mobile Number" onblur="validation()"><span class="error_msg" ></span>
+    
+                    <input type="email" class="form_field"  id="email" placeholder="Email | abc@xyz.com" onblur="validation()"><span class="error_msg" ></span>
+    
+                    <input type="button" value="SIGN UP" id="sign_up" class="btn gradient" onclick="basic_validation()">
+                    <span class="or_sign_in">OR</span>
+                    <input type="button" value="SIGN IN" id="sign_in" class="btn gradient">
+                </div>
+            </div>
+        </nav>
+        <!-- modal for login -->
+        <div class="modal" id="modal">
+            <div class="backdrop" id="backdrop" onclick="closeModal()"></div>
+            <div class="content">
+                <input type="email" placeholder="email id" required> <br>
+                <input type="password" placeholder="password" required> <br>
+                <input type="button" value="SIGN IN" class="btn gradient"> <br>
+                <img src="images/google.jpg" alt="google"> OR <img src="images/facebook.jpg" alt="facebook">
+            </div>
+            <i class="fa fa-times" onclick="closeModal()"></i>
+        </div>
+
+        <div class="srch"><input type="text" placeholder="Search here..."><a href="#" id="srch_fn"><i class="fa fa-search"></i></a></div>
+        
+        <div class="page_title">
+            Patan
+        </div>
+    </section>
+    <div class="hr"><hr></div>
+
+    <!--main section-->
+    <main class="mid">
+     <div class="wrap_cont" id="">
+        <div class="info">
+            Patan, the former capital of Gujarat, is a place famous for Patola sarees, one of the finest hand-made textiles in the world. ... Also known as the double Ikat, it is woven only in Bali, Indonesia besides Patan.
+        </div>
+
+        <div class="place_article img1">
+
+            <article>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium facilis ipsa 
+            </article>
+            <h3>Mahatma Gandhi Museum</h3>
+
+        </div>
+        <div class="place_article img2">
+            <article>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium facilis ipsa 
+            </article>
+            
+            <h3>Watson Museum</h3>
+
+        </div>
+        <div class="place_article img3">
+
+            <article>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium facilis ipsa 
+            </article>
+            <h3>Ranjit Vilas Palace</h3>
+
+        </div>
+        <div class="place_article img4">
+            <article>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium facilis ipsa 
+            </article>
+            
+                        <h3>Aji dam</h3>
+
+        </div>
+        <div class="place_article img5">
+
+            <article>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium facilis ipsa 
+            </article>
+            <h3>Lal Pari Lake</h3>
+
+        </div>
+
+     </div>
+    </main>
+    <div class="visit_place" >
+        <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwic9P37-YHwAhXPT30KHXoWBpcQFjAEegQIDxAD&url=https%3A%2F%2Fm.redbus.in%2Fbus-tickets%2Fbaroda-to-patan-gujarat&usg=AOvVaw2cz8aDMGDuvWzYk623S0n-">
+       Patan Central bus station
+       </a>
+       <span></span>
+    </div>
+    
+    <div class="hr"><hr></div>
+
+    <!-- Bottom portion of site-->
+    <section class="btm" id="abtUs">
+        <div class="wrap_cont">
+            <h2>About Us</h2>
+            <div class="abtUs">
+                <p>This website give brief information about Historical places of Ahemedabad...</p>
+                <p>Information has taken from <a title="wikipedia" href="https://www.wikipedia.org" target="_blank">wikipedia
+                    <span class="tooltip">Wikipedia</span>
+                </a> and <a title="Gujarat Tourism" href="https://www.gujarattourism.com" target="_blank">Guajarat Tourism
+                    <span class="tooltip">Gujarat Tourism</span>
+                </a></p>
+            </div>
+        </div>    
+    </section>
+    
+    <div class="toTop">
+        <a href="#home">
+        <i class="fa fa-chevron-circle-up"></i>
+        </a>
+    </div>
+
+</div>
+
+<!-- script -->
+<script>
+        document.getElementById("srch_fn").onclick = function() {
+        alert("Search Function is not ready yet!");
+    };
+
+    // navbar and toUp
+    function navBar_visibility() {
+        let nav = document.querySelector("nav");
+        let span = document.getElementsByClassName("site_tagline")[0];
+        if(window.scrollY > 100){
+            nav.classList.add("sticky");
+            span.style.opacity = 0;
+        }else{
+            nav.classList.remove("sticky");
+            span.style.opacity = 1;
+        }
+    };
+                        
+    function toUpVisible(){
+        
+        let arrow = document.querySelector(".toTop"); //for class use . and for id #
+        
+        // scrollY is equivalent to pageYOffset 
+        if (window.scrollY > 100) {
+            arrow.classList.add("active");
+        } else {
+            arrow.classList.remove("active");
+        }
+        
+        arrow.onclick = () => window.scrollTo = (0,0);
+        
+    }
+
+    // using functions related to scrollY
+        window.onscroll = function(){ 
+            navBar_visibility();
+            toUpVisible();
+        };
+
+    // validation
+        const val = () => {
+            basic_validation();
+            validation();
+        }
+
+    // modal pop up
+        let signIn = document.getElementById("sign_in");
+
+        signIn.onclick = function openModal() {
+            let modal = document.querySelector(".modal");
+            modal.classList.add("active_modal");
+        }
+
+        // let backdrop = document.getElementById("backdrop");
+        // similar to seting up onclick to backdrop div
+        function closeModal() {
+            modal.classList.remove("active_modal");
+        }
+
+</script>
+<script>
+    // basic validation of sign up form
+    function basic_validation() {
+
+    let user_form = document.getElementById("user_login");
+    let form_field = user_form.getElementsByTagName("input");
+    let error_msg = user_form.getElementsByClassName("error_msg");
+
+    for (let i = 0; i < form_field.length-2; i++) {
+        if ( !form_field[i].value ) {
+            form_field[i].style.border = "2px solid #ff7171";
+            error_msg[i].innerText = "*required";
+            
+        } else {
+            form_field[i].style.border = "2px solid #a8e8f8";
+            error_msg[i].innerText = "";
+            
+        }
+    }
+    }
+
+    function validation() {
+
+    let user_form = document.getElementById("user_login");
+    let form_field = user_form.getElementsByTagName("input");
+    let error_msg = user_form.getElementsByClassName("error_msg");
+
+    // if name is less than 3 letter then
+    if (form_field[0].value.length <= 2 && (form_field[0].value)) {
+        error_msg[0].innerHTML = "can't be less than 3 letters";
+        
+    } else { error_msg[0].innerHTML = "";
+        
+    }
+
+    // for mobile number
+    let pattern_m = /^[0-9]\d{9}$/;    
+    if (!pattern_m.test(form_field[2].value && form_field[2].value)) {
+        error_msg[2].innerText = "must be 10 digits";
+        
+    } else { error_msg[2].innerText = ""; 
+        
+    }
+
+
+    // for email .test or .match
+    // form_field[3] is email field
+    let pattern_em = /^[0-9a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/;
+    if(!pattern_em.test(form_field[3].value)){
+        error_msg[3].innerText = "try something like site@history.com..";
+        
+    } else { error_msg[3].innerText = "" ;
+        
+    }
+    }
+    function n() {
+        window.open("index.html","_parent");
+    }
+</script>
+</body>
+</html>
